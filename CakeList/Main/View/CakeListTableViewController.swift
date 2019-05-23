@@ -15,6 +15,9 @@ class CakeListTableViewController: UITableViewController, CakeListViewProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Delicious Cakes"
+        
         presenter?.viewDidLoad()
     }
     
@@ -28,6 +31,10 @@ class CakeListTableViewController: UITableViewController, CakeListViewProtocol {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.model?.cakes.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
