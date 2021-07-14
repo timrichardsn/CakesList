@@ -18,24 +18,27 @@ class ImageCache: ImageDownloadable {
         return cache
     }()
     
-    func image(for url: URL, onSuccess: @escaping (UIImage?) -> Void, onError: @escaping (Error?) -> Void) {
+    func image(for url: URL, onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
         
-        if let cachedImage = cakeImageCache.object(forKey: url.absoluteString  as NSString) {
-            onSuccess(cachedImage)
+        if let cachedImage = cakeImageCache.object(forKey: url.absoluteString as NSString) {
+            onComplete(.success(cachedImage))
             return
         }
         
-        downloadImage(at: url, onSuccess: { [weak self] image in
+        downloadImage(at: url) { [weak self] result in
             
-            if let image = image {
-                self?.cakeImageCache.setObject(image, forKey: url.absoluteString as NSString)
+            switch result {
+            case .success(let image):
+                
+                if let image = image {
+                    self?.cakeImageCache.setObject(image, forKey: url.absoluteString as NSString)
+                }
+                
+                onComplete(.success(image))
+                
+            case .failure(let error):
+                onComplete(.failure(error))
             }
-            
-            onSuccess(image)
-            
-        }) { error in
-            
-            onError(error)
         }
     }
 }

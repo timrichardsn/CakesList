@@ -9,23 +9,21 @@
 import Foundation
 
 protocol CakeRequestable {
-    func getCakes(onSuccess: @escaping ([Cake]) -> Void, onError: @escaping (Error) -> Void)
+    func getCakes(onComplete: @escaping (Result<[Cake], Error>) -> Void)
 }
 
 extension CakeRequestable {
     
     /// Requests cakes from the server. Callbacks are called on the main thread.
-    func getCakes(onSuccess: @escaping ([Cake]) -> Void, onError: @escaping (Error) -> Void) {
+    func getCakes(onComplete: @escaping (Result<[Cake], Error>) -> Void) {
         
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "gist.githubusercontent.com"
-        urlComponents.path = "/hart88/198f29ec5114a3ec3460/raw/8dd19a88f9b8d24c23d9960f3300d0c917a4f07c/cake.json"
+        urlComponents.path = "/hart88/79a65d27f52cbb74db7df1d200c4212b/raw/ebf57198c7490e42581508f4f40da88b16d784ba/cakeList"
         
         guard let url = urlComponents.url else {
-            Thread.executeOnMain {
-                onError(NetworkError.unableToBuildUrl)
-            }
+            Thread.executeOnMain { onComplete(.failure(NetworkError.unableToBuildUrl)) }
             return
         }
         
@@ -35,22 +33,16 @@ extension CakeRequestable {
                 let data = try Data(contentsOf: url)
                 
                 guard let cakes = try? JSONDecoder().decode([CakeResponse].self, from: data) else {
-                    DispatchQueue.main.async {
-                        onError(NetworkError.invalidJsonFormat)
-                    }
+                    DispatchQueue.main.async { onComplete(.failure(NetworkError.invalidJsonFormat)) }
                     return
                 }
                 
                 let cakesList = cakes.compactMap { $0.cake }
-                DispatchQueue.main.async {
-                    onSuccess(cakesList)
-                }
+                DispatchQueue.main.async { onComplete(.success(cakesList)) }
                 
             } catch {
                 
-                DispatchQueue.main.async {
-                    onError(error)
-                }
+                DispatchQueue.main.async { onComplete(.failure(error)) }
             }
         }
     }
@@ -64,9 +56,7 @@ private struct CakeResponse: Decodable {
     var image: String?
     
     var cake: Cake? {
-        guard let title = title, let desc = desc, let image = image else {
-            return nil
-        }
+        guard let title = title, let desc = desc, let image = image else { return nil }
         return Cake(title: title, desc: desc, imageUrlString: image)
     }
 }

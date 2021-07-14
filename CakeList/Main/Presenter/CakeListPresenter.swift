@@ -16,18 +16,27 @@ class CakeListPresenter: CakeListPresenterProtocol {
     
     func viewDidLoad() {
         
-        getCakes(onSuccess: { [weak self] cakes in
-            self?.model.cakes = cakes
-        }) { error in
-            // handle the error appropriately
+        getCakes { [weak self] result in
+            
+            switch result {
+            case .success(let cakes):
+                self?.model.cakes = cakes
+            case .failure:
+                // handle the error appropriately
+                break
+            }
         }
     }
     
     func cake(at row: Int) -> Cake {
-        return model.cakes[row]
+        model.cakes[row]
     }
     
     func didReceiveCakes() {
         view?.reloadData()
+    }
+    
+    func didSelect(row: Int) {
+        coordinator?.showDetail(for: cake(at: row))
     }
 }

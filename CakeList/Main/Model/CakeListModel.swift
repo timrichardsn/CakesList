@@ -13,8 +13,6 @@ class CakeListModel: CakeListModelProtocol {
     weak var presenter: CakeListPresenterProtocol?
     
     var cakes: [Cake] = [] {
-        didSet {
-            presenter?.didReceiveCakes()
-        }
+        didSet { presenter?.didReceiveCakes() }
     }
 }

@@ -14,9 +14,7 @@ extension Thread {
         if isMainThread {
             block()
         } else {
-            DispatchQueue.main.async {
-                block()
-            }
+            DispatchQueue.main.async(execute: block)
         }
     }
 }

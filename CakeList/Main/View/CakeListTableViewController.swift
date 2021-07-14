@@ -10,13 +10,13 @@ import UIKit
 
 class CakeListTableViewController: UITableViewController, CakeListViewProtocol {
     
-    static var storyboardIdentifier: StoryboardIdentifier! = .main
+    static let storyboardIdentifier: StoryboardIdentifier = .main
     var presenter: CakeListPresenterProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Delicious Cakes"
+        title = "🎂 CakeItApp 🍰"
         
         presenter?.viewDidLoad()
     }
@@ -26,15 +26,16 @@ class CakeListTableViewController: UITableViewController, CakeListViewProtocol {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.model?.cakes.count ?? 0
+        presenter?.model?.cakes.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        presenter?.didSelect(row: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,6 +47,6 @@ class CakeListTableViewController: UITableViewController, CakeListViewProtocol {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        60
     }
 }

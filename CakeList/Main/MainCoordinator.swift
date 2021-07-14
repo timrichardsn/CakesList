@@ -33,4 +33,18 @@ class MainCoordinator: Coordinator {
         
         navigationController.pushViewController(view, animated: false)
     }
+    
+    func showDetail(for cake: Cake) {
+        
+        let view = CakeDetailViewController.instantiate()
+        let model: CakeDetailModelProtocol = CakeDetailModel(cake: cake)
+        let presenter: CakeDetailPresenterProtocol = CakeDetailPresenter(model: model)
+        
+        view.presenter = presenter
+        
+        presenter.view = view
+        presenter.coordinator = self
+        
+        navigationController.pushViewController(view, animated: true)
+    }
 }

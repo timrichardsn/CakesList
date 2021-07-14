@@ -26,6 +26,11 @@
 		019D6F592296922500C4CB57 /* Cake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D6F582296922500C4CB57 /* Cake.swift */; };
 		019D6F5C2296945700C4CB57 /* CakeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D6F5B2296945700C4CB57 /* CakeListModel.swift */; };
 		019D6F5E2296971000C4CB57 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019D6F5D2296971000C4CB57 /* ImageCache.swift */; };
+		01BB6704269EB2C500C5944E /* CakeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BB6703269EB2C500C5944E /* CakeDetailViewController.swift */; };
+		01BB6706269EB3D000C5944E /* CakeDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BB6705269EB3D000C5944E /* CakeDetailPresenter.swift */; };
+		01BB6708269EB43C00C5944E /* CakeDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BB6707269EB43C00C5944E /* CakeDetailModel.swift */; };
+		01BB670A269EC3CB00C5944E /* CakeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BB6709269EC3CB00C5944E /* CakeImageView.swift */; };
+		01BB670C269ED90700C5944E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BB670B269ED90700C5944E /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +67,11 @@
 		019D6F582296922500C4CB57 /* Cake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake.swift; sourceTree = "<group>"; };
 		019D6F5B2296945700C4CB57 /* CakeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeListModel.swift; sourceTree = "<group>"; };
 		019D6F5D2296971000C4CB57 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		01BB6703269EB2C500C5944E /* CakeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeDetailViewController.swift; sourceTree = "<group>"; };
+		01BB6705269EB3D000C5944E /* CakeDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeDetailPresenter.swift; sourceTree = "<group>"; };
+		01BB6707269EB43C00C5944E /* CakeDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeDetailModel.swift; sourceTree = "<group>"; };
+		01BB6709269EC3CB00C5944E /* CakeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeImageView.swift; sourceTree = "<group>"; };
+		01BB670B269ED90700C5944E /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				019D6F3522968C8900C4CB57 /* Thread.swift */,
+				01BB670B269ED90700C5944E /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -179,6 +190,8 @@
 			children = (
 				019D6F4C22968E6E00C4CB57 /* CakeListTableViewController.swift */,
 				019D6F4E22968F4300C4CB57 /* CakeListTableViewCell.swift */,
+				01BB6703269EB2C500C5944E /* CakeDetailViewController.swift */,
+				01BB6709269EC3CB00C5944E /* CakeImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				019D6F532296900F00C4CB57 /* CakeListPresenter.swift */,
+				01BB6705269EB3D000C5944E /* CakeDetailPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -203,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				019D6F5B2296945700C4CB57 /* CakeListModel.swift */,
+				01BB6707269EB43C00C5944E /* CakeDetailModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -310,6 +325,7 @@
 			files = (
 				019D6F4322968C8900C4CB57 /* Thread.swift in Sources */,
 				019D6F5C2296945700C4CB57 /* CakeListModel.swift in Sources */,
+				01BB670C269ED90700C5944E /* String.swift in Sources */,
 				019D6F562296909400C4CB57 /* CakeRequestable.swift in Sources */,
 				019D6F4022968C8900C4CB57 /* NetworkError.swift in Sources */,
 				019D6F5122968FAF00C4CB57 /* MainProtocols.swift in Sources */,
@@ -318,11 +334,15 @@
 				019D6F5E2296971000C4CB57 /* ImageCache.swift in Sources */,
 				019D6F4A22968DD700C4CB57 /* MainCoordinator.swift in Sources */,
 				019D6F0B22968C4A00C4CB57 /* AppDelegate.swift in Sources */,
+				01BB6708269EB43C00C5944E /* CakeDetailModel.swift in Sources */,
 				019D6F542296900F00C4CB57 /* CakeListPresenter.swift in Sources */,
 				019D6F3C22968C8900C4CB57 /* StoryboardView.swift in Sources */,
 				019D6F4F22968F4300C4CB57 /* CakeListTableViewCell.swift in Sources */,
 				019D6F3F22968C8900C4CB57 /* ImageDownloadable.swift in Sources */,
 				019D6F592296922500C4CB57 /* Cake.swift in Sources */,
+				01BB6706269EB3D000C5944E /* CakeDetailPresenter.swift in Sources */,
+				01BB6704269EB2C500C5944E /* CakeDetailViewController.swift in Sources */,
+				01BB670A269EC3CB00C5944E /* CakeImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +507,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCQUCMX2H6;
 				INFOPLIST_FILE = CakeList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -505,6 +526,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCQUCMX2H6;
 				INFOPLIST_FILE = CakeList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

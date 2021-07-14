@@ -13,8 +13,9 @@ struct Cake {
     let title: String
     let desc: String
     let imageUrlString: String
+}
+
+extension Cake {
     
-    var imageUrl: URL? {
-        return URL(string: imageUrlString)
-    }
+    var imageUrl: URL? { URL(string: imageUrlString) }
 }

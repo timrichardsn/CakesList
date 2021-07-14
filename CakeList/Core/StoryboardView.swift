@@ -14,14 +14,14 @@ enum StoryboardIdentifier {
     
     var storyboard: UIStoryboard {
         switch self {
-        case .main: return UIStoryboard(name: "Main", bundle: Bundle.main)
+        case .main: return UIStoryboard(name: "Main", bundle: .main)
         }
     }
 }
 
-protocol StoryboardView: class {
+protocol StoryboardView: AnyObject {
     
-    static var storyboardIdentifier: StoryboardIdentifier! { get }
+    static var storyboardIdentifier: StoryboardIdentifier { get }
     static func instantiate() -> Self
 }
 

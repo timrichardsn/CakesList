@@ -13,7 +13,7 @@ protocol ImageDownloadable {}
 extension ImageDownloadable {
     
     /// Requests an image from a URL. Callbacks are always called on the main thread.
-    func downloadImage(at url: URL, onSuccess: @escaping (UIImage?) -> Void, onError: @escaping (Error?) -> Void) {
+    func downloadImage(at url: URL, onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
         
         DispatchQueue.global(qos: .background).async {
             
@@ -21,13 +21,9 @@ extension ImageDownloadable {
                 let data = try Data(contentsOf: url)
                 let image = UIImage(data: data)
                 
-                DispatchQueue.main.async {
-                    onSuccess(image)
-                }
+                DispatchQueue.main.async { onComplete(.success(image)) }
             } catch {
-                DispatchQueue.main.async {
-                    onError(error)
-                }
+                DispatchQueue.main.async { onComplete(.failure(error)) }
             }
         }
     }
